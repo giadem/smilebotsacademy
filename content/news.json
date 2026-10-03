@@ -9,12 +9,21 @@
     "content": "In vista delle prossime trasferte internazionali, i membri degli Smilebots sono stati ospitati negli studi della RSI per la trasmissione \"Prima Ora\".\n\nDurante la diretta televisiva, i ragazzi hanno raccontato la loro esperienza nelle finali di Dallas, St. Louis e Los Angeles, mostrando in studio le capacità sviluppate nel laboratorio.\n\nUn'importante vetrina per far conoscere al grande pubblico ticinese il valore formativo delle discipline STEM e della robotica educativa.\n\nIl video dell'intervista è disponibile sul <a href='https://youtu.be/kJRIAR_ckZs' target='_blank' rel='noopener'>nostro canale YouTube</a>."
   },
   {
+    "id": "news-3",
+    "title": "Smilebots Campioni Svizzeri",
+    "date": "2026-05-05",
+    "category": "Competizioni",
+    "image": "/src/news/smilebots_basilea.jpg",
+    "summary": "Lo scorso 8 febbraio, gli Smilebots si sono laureati campioni svizzeri vincendo il torneo nazionale di robotica VEX V5 svoltosi a Basilea.",
+    "content": "La squadra di robotica massagnese Smilebots lo scorso 8 febbraio si è laureata campionessa svizzera vincendo il torneo nazionale di robotica VEX V5 svoltosi a Basilea.\n\nQuesto risultato segue la brillante prestazione internazionale dello scorso dicembre al Signature Event di Taiwan, durante il quale la squadra aveva conquistato il prestigioso Inspire Award. Con la vittoria di Basilea, gli Smilebots hanno inoltre ottenuto la qualificazione alle finali mondiali, svoltesi a St. Louis (USA) dal 21 al 24 aprile.\n\nIl successo è stato ulteriormente rafforzato dall'ottima performance della Smilebots Academy, associazione di riferimento della squadra. Anche la seconda formazione dell'Academy, composta da ragazzi più giovani e denominata Jeeg Robot, ha infatti vinto il torneo di Basilea nella categoria Middle School, qualificandosi anch'essa per le finali mondiali di St. Louis nella propria categoria.\n\nLa squadra Smilebots (categoria High School) è composta da Federico, Madalena e Alexandra, con il supporto dei coach Corrado e Ruggero. La squadra Jeeg Robot (categoria Middle School) è formata da Fabiano, Ishaan, Gilberto e Aaron, accompagnati dai coach Giacomo e Armando.\n\nQuesto articolo è comparso nell'edizione di maggio della <a href='https://www.massagno.ch/info-Massagno-12026-maggio-a7f71f00?i=1' target='_blank' rel='noopener'>rivista del Comune di Massagno</a>."
+  },
+  {
     "id": "news-2",
     "title": "Trionfo alla finale mondiale di Los Angeles",
     "date": "2023-11-12",
     "category": "Competizioni",
     "image": "/src/news/team.jpg",
-    "summary": "Una vittoria storica per la squadra ticinese: primi classificati assoluti su oltre 10.000 team partecipanti da tutto il mondo.",
+    "summary": "Una vittoria storica per la squadra ticinese: primi classificati assoluti su oltre 10'000 team partecipanti da tutto il mondo.",
     "content": "Gli Smilebots hanno conquistato il primo posto assoluto alla finale mondiale di Los Angeles, un risultato straordinario che premia anni di lavoro, ricerca e passione.\n\nLa competizione, che ha visto la partecipazione di decine di migliaia di studenti da ogni continente, ha messo alla prova non solo l'affidabilità meccanica del robot, ma anche le capacità di programmazione autonoma, la strategia di gara e il teamwork.\n\nÈ una grande emozione portare il nome della Svizzera e del Ticino sul gradino più alto del podio mondiale."
   }
 ]
