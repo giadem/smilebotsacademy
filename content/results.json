@@ -38,5 +38,21 @@
     "location": "Dallas, USA",
     "description": "Vincitori dell'Inspire Award alla finale mondiale VEX Robotics.",
     "icon": "trophy"
+  },
+  {
+    "id": "detroit-fll",
+    "year": "2022",
+    "title": "Qualificati alla Finale Mondiale",
+    "location": "Houston, USA",
+    "description": "Qualifica alla Finale Mondiale della First Lego League a Houston (USA).",
+    "icon": "trophy"
+  },
+  {
+    "id": "detroit-fll",
+    "year": "2019",
+    "title": "Qualificati alla Finale Mondiale",
+    "location": "Detroit, USA",
+    "description": "Qualifica alla Finale Mondiale della First Lego League a Detroit (USA).",
+    "icon": "trophy"
   }
 ]
