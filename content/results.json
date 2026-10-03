@@ -1,0 +1,34 @@
+[
+  {
+    "id": "la-2023",
+    "year": "2023",
+    "title": "Primi Classificati e Finale Mondiale",
+    "location": "Los Angeles, USA",
+    "description": "Vittoria assoluta alla finale mondiale in una competizione globale con decine di migliaia di squadre partecipanti.",
+    "icon": "trophy"
+  },
+  {
+    "id": "taiwan",
+    "year": "2026",
+    "title": "Inspire Award e Invitati Asia Pacific",
+    "location": "Taiwan",
+    "description": "Vincitori dell'Inspire Award. Invitati speciali alla finale del torneo Asia Pacific.",
+    "icon": "trophy"
+  },
+  {
+    "id": "st-louis",
+    "year": "2026",
+    "title": "Vincitori Judge Award",
+    "location": "St. Louis, USA",
+    "description": "Vincitori del Judge Award alla finale mondiale.",
+    "icon": "trophy"
+  },
+  {
+    "id": "dallas",
+    "year": "2025",
+    "title": "Inspire Award e Judge Award",
+    "location": "Dallas, USA",
+    "description": "Vincitori dell'Inspire Award e del Judge Award alla finale mondiale VEX Robotics.",
+    "icon": "trophy"
+  }
+]

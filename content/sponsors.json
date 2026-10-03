@@ -1,0 +1,16 @@
+[
+  {
+    "id": "microavia",
+    "name": "Microavia",
+    "tier": "Partner",
+    "logo": "src/sponsors/microavia.png",
+    "website": "https://microavia.com"
+  },
+  {
+    "id": "tarchini",
+    "name": "Tarchini Group",
+    "tier": "Partner",
+    "logo": "src/sponsors/tarchini_group.png",
+    "website": "https://www.tarchinigroup.com/it/homepage"
+  }
+]

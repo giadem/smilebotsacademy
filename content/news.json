@@ -1,0 +1,20 @@
+[
+  {
+    "id": "news-1",
+    "title": "Gli Smilebots ospiti della trasmissione RSI \"Prima Ora\"",
+    "date": "2026-05-15",
+    "category": "Media",
+    "image": "/src/news/prima_ora.jpg",
+    "summary": "Ampio spazio dedicato ai successi del team nella trasmissione RSI. Dimostrazione live dei robot e intervista ai membri del team.",
+    "content": "In vista delle prossime trasferte internazionali, i membri degli Smilebots sono stati ospitati negli studi della RSI per la trasmissione \"Prima Ora\".\n\nDurante la diretta televisiva, i ragazzi hanno raccontato la loro esperienza nelle finali di Dallas, St. Louis e Los Angeles, mostrando in studio le capacità sviluppate nel laboratorio.\n\nUn'importante vetrina per far conoscere al grande pubblico ticinese il valore formativo delle discipline STEM e della robotica educativa.\n\nIl video dell'intervista è disponibile sul <a href='https://youtu.be/kJRIAR_ckZs' target='_blank' rel='noopener'>nostro canale YouTube</a>."
+  },
+  {
+    "id": "news-2",
+    "title": "Trionfo alla finale mondiale di Los Angeles",
+    "date": "2023-11-12",
+    "category": "Competizioni",
+    "image": "/src/news/team.jpg",
+    "summary": "Una vittoria storica per la squadra ticinese: primi classificati assoluti su oltre 10.000 team partecipanti da tutto il mondo.",
+    "content": "Gli Smilebots hanno conquistato il primo posto assoluto alla finale mondiale di Los Angeles, un risultato straordinario che premia anni di lavoro, ricerca e passione.\n\nLa competizione, che ha visto la partecipazione di decine di migliaia di studenti da ogni continente, ha messo alla prova non solo l'affidabilità meccanica del robot, ma anche le capacità di programmazione autonoma, la strategia di gara e il teamwork.\n\nÈ una grande emozione portare il nome della Svizzera e del Ticino sul gradino più alto del podio mondiale."
+  }
+]

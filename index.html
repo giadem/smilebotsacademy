@@ -1,0 +1,220 @@
+<!-- ==========================================================================================================================================
+  ____            _ _      _           _            _                 _                      
+ / ___| _ __ ___ (_) | ___| |__   ___ | |_ ___     / \   ___ __ _  __| | ___ _ __ ___  _   _ 
+ \___ \| '_ ` _ \| | |/ _ \ '_ \ / _ \| __/ __|   / _ \ / __/ _` |/ _` |/ _ \ '_ ` _ \| | | |
+  ___) | | | | | | | |  __/ |_) | (_) | |_\__ \  / ___ \ (_| (_| | (_| |  __/ | | | | | |_| |
+ |____/|_| |_| |_|_|_|\___|_.__/ \___/ \__|___/ /_/   \_\___\__,_|\__,_|\___|_| |_| |_|\__, |
+                                                                                       |___/ 
+                                                                                                                                                  
+======================================================================================================== DESIGN | © Smilebots Academy ========= -->
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smilebots Academy</title>
+  <meta name="description" content="Accademia di robotica competitiva e formazione STEM in Ticino, Svizzera. Campioni mondiali VEX Robotics.">
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body data-page="home">
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="/" class="logo">
+        <img src="src/smilebots_academy_logo.svg" alt="Smilebots Academy Logo" class="header-logo-img" />
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="/" class="nav-link active">Home</a></li>
+          <li><a href="#chi-siamo" class="nav-link">Chi Siamo</a></li>
+          <li><a href="/news" class="nav-link">News</a></li>
+          <li><a href="#sponsors" class="nav-link">Sponsor</a></li>
+          <li><a href="mailto:smilebotsacademy@gmail.com" class="nav-cta">Contattaci</a></li>
+        </ul>
+      </nav>
+
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-video-wrapper">
+      <video class="hero-video" autoplay loop muted playsinline poster="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'%3E%3Crect width='1920' height='1080' fill='%23f8fafc'/%3E%3C/svg%3E">
+        <source src="/src/video/smilebots_hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+    </div>
+
+    <div class="container hero-content">
+      <h1 class="hero-title">
+        L'eccellenza della <span class="highlight">Robotica</span> nei vertici mondiali
+      </h1>
+      <p class="hero-description">
+        Dalle scuole del Ticino ai podi internazionali: formiamo i giovani talenti STEM del futuro.
+      </p>
+      <div class="hero-actions">
+        <a href="#achievements" class="btn-primary">
+          I nostri successi
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+        <a href="mailto:smilebotsacademy@gmail.com" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 8px;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Contattaci
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements section -->
+  <section id="achievements" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Traguardi</span>
+        <div class="section-title-wrap">
+          <h2 class="section-title">Trofei e Riconoscimenti</h2>
+          <div class="achievements-nav">
+            <button class="achievements-arrow-btn" id="achievements-prev" aria-label="Scorri a sinistra" title="Precedente">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="achievements-arrow-btn" id="achievements-next" aria-label="Scorri a destra" title="Successivo">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="achievements-scroll-wrapper">
+        <div class="achievements-track" id="achievements-track">
+          <!-- Dynamic rendering from content/results.json -->
+          <p style="color: var(--text-muted);">Caricamento risultati in corso...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About section -->
+  <section id="chi-siamo" class="section" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <span class="section-subtitle">Una realtà ticinese con una vocazione internazionale</span>
+          <h2 class="section-title">Smilebots</h2>
+          <p class="about-description">
+            Gli Smilebots sono una squadra di robotica composta da studenti delle scuole superiori e universitari del Luganese. Negli ultimi anni abbiamo partecipato alle finali mondiali di Dallas, St. Louis e Taiwan, ottenendo importanti riconoscimenti internazionali.<br><br>La nostra associazione è senza scopo di lucro. Abbiamo recentemente trasferito la sede a Lamone, dove i ragazzi progettano, costruiscono, programmano e testano i robot durante tutto l'anno. Il progetto vive grazie al lavoro dei volontari e al contributo di sponsor che credono nella formazione dei giovani e nell'innovazione tecnologica.
+          </p>
+        </div>
+        <div class="about-image-wrap">
+          <img src="src/team_photo.jpg" alt="Smilebots Team" class="about-image" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- News section -->
+  <section id="news" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Blog e Aggiornamenti</span>
+        <div class="section-title-wrap">
+          <h2 class="section-title">Ultime News</h2>
+          <a href="/news" class="section-link">
+            Tutte le news
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="news-grid" id="news-grid">
+        <!-- Dynamic rendering from content/news.json (Max 3) -->
+        <p style="color: var(--text-muted);">Caricamento notizie...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsors section -->
+  <section id="sponsors" class="section" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">I Nostri Sostenitori</span>
+        <h2 class="section-title">Partner e Sponsor</h2>
+        <p style="color: var(--text-muted); max-width: 580px; margin: 1rem 0 2rem 0; font-size: 0.95rem;">
+          Sostenere gli Smilebots significa investire nella formazione tecnologica dei giovani ed associare il proprio brand all'innovazione.
+        </p>
+        <a href="mailto:smilebotsacademy@gmail.com" class="btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Diventa Partner / Contattaci
+        </a>
+      </div>
+
+      <div class="sponsors-grid" id="sponsors-grid">
+        <!-- Dynamic rendering from content/sponsors.json -->
+        <p style="color: var(--text-muted); text-align: center; grid-column: 1/-1;">Caricamento sponsor...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contatti" class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-left">
+          <img src="src/smilebots_academy_logo_s.png" alt="Smilebots Academy Logo" class="footer-logo-img" />
+          <div class="footer-info">
+            <p><strong>Smilebots Academy</strong></p>
+            <p style="font-size: 0.82rem; color: var(--text-dim);">Robotica • STEM • Innovazione • Competizione internazionale</p>
+          </div>
+        </div>
+
+        <div class="footer-right">
+          <a href="mailto:smilebotsacademy@gmail.com" style="display:inline-flex; align-items:center; gap:6px; font-weight:600; font-size:0.9rem; color:var(--primary-blue); margin-right:1rem;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            smilebotsacademy@gmail.com
+          </a>
+
+          <div class="social-icons">
+            <a href="https://www.instagram.com/smilebots_13176a/" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@smilebots4177" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="copyright-year">2026</span> Smilebots Academy. Tutti i diritti riservati.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- News Popup Modal -->
+  <dialog id="news-modal" class="modal-dialog">
+    <div class="modal-content">
+      <button class="modal-close-btn" aria-label="Chiudi">&times;</button>
+      <img id="modal-img" src="" alt="" class="modal-header-img" />
+      <div class="modal-body">
+        <div class="modal-meta">
+          <span id="modal-category" class="modal-tag"></span>
+          <span id="modal-date" class="modal-date"></span>
+        </div>
+        <h2 id="modal-title" class="modal-title"></h2>
+        <div id="modal-text" class="modal-text"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
