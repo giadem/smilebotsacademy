@@ -78,7 +78,7 @@ async function loadAchievements() {
     <article class="achievement-card">
       <div>
         <div class="achievement-icon">${getTrophyIconSvg()}</div>
-        <div class="achievement-year">${item.year} — ${item.location}</div>
+        <div class="achievement-year"><span class="achievement-year-only">${item.year}</span> — ${item.location}</div>
         <h3 class="achievement-title">${item.title}</h3>
       </div>
       <p class="achievement-desc">${item.description}</p>

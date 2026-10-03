@@ -2,7 +2,7 @@
   {
     "id": "la-2023",
     "year": "2023",
-    "title": "Primi Classificati e Finale Mondiale",
+    "title": "Primi classificati alla Finale Mondiale",
     "location": "Los Angeles, USA",
     "description": "Vittoria assoluta alla finale mondiale in una competizione globale con decine di migliaia di squadre partecipanti.",
     "icon": "trophy"
@@ -26,9 +26,17 @@
   {
     "id": "dallas",
     "year": "2025",
-    "title": "Inspire Award e Judge Award",
+    "title": "Vincitori Judge Award",
     "location": "Dallas, USA",
-    "description": "Vincitori dell'Inspire Award e del Judge Award alla finale mondiale VEX Robotics.",
+    "description": "Vincitori del Judge Award alla finale mondiale VEX Robotics.",
+    "icon": "trophy"
+  },
+  {
+    "id": "dallas",
+    "year": "2024",
+    "title": "Vincitori Inspire Award",
+    "location": "Dallas, USA",
+    "description": "Vincitori dell'Inspire Award alla finale mondiale VEX Robotics.",
     "icon": "trophy"
   }
 ]

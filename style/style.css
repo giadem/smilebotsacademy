@@ -421,6 +421,11 @@ button {
   margin-bottom: 0.2rem;
 }
 
+.achievement-year-only {
+  font-weight: 800;
+  color: var(--text-main);
+}
+
 .achievement-title {
   font-size: 1.1rem;
   font-weight: 700;
