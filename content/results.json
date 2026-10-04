@@ -1,58 +1,79 @@
 [
   {
-    "id": "la-2023",
-    "year": "2023",
-    "title": "Primi classificati alla Finale Mondiale",
-    "location": "Los Angeles, USA",
-    "description": "Vittoria assoluta alla finale mondiale in una competizione globale con decine di migliaia di squadre partecipanti.",
-    "icon": "trophy"
-  },
-  {
     "id": "taiwan",
     "year": "2026",
     "title": "Inspire Award e Invitati Asia Pacific",
+    "title_en": "Inspire Award & Asia Pacific Invitation",
     "location": "Taiwan",
+    "location_en": "Taiwan",
     "description": "Vincitori dell'Inspire Award. Invitati speciali alla finale del torneo Asia Pacific.",
+    "description_en": "Winners of the Inspire Award. Special invitees to the Asia Pacific tournament finals.",
     "icon": "trophy"
   },
   {
     "id": "st-louis",
     "year": "2026",
     "title": "Vincitori Judge Award",
+    "title_en": "Judges Award Winners",
     "location": "St. Louis, USA",
+    "location_en": "St. Louis, USA",
     "description": "Vincitori del Judge Award alla finale mondiale.",
+    "description_en": "Winners of the Judges Award at the World Championship.",
     "icon": "trophy"
   },
   {
     "id": "dallas",
     "year": "2025",
     "title": "Vincitori Judge Award",
+    "title_en": "Judges Award Winners",
     "location": "Dallas, USA",
+    "location_en": "Dallas, USA",
     "description": "Vincitori del Judge Award alla finale mondiale VEX Robotics.",
+    "description_en": "Winners of the Judges Award at the VEX Robotics World Championship.",
     "icon": "trophy"
   },
   {
     "id": "dallas",
     "year": "2024",
     "title": "Vincitori Inspire Award",
+    "title_en": "Inspire Award Winners",
     "location": "Dallas, USA",
+    "location_en": "Dallas, USA",
     "description": "Vincitori dell'Inspire Award alla finale mondiale VEX Robotics.",
+    "description_en": "Winners of the Inspire Award at the VEX Robotics World Championship.",
+    "icon": "trophy"
+  },
+  {
+    "id": "la-2023",
+    "year": "2023",
+    "title": "Primi classificati alla Finale Mondiale",
+    "title_en": "1st Place at the World Finals",
+    "location": "Los Angeles, USA",
+    "location_en": "Los Angeles, USA",
+    "description": "Vittoria assoluta alla finale mondiale in una competizione globale con decine di migliaia di squadre partecipanti.",
+    "description_en": "Overall victory at the World Finals in a global competition with tens of thousands of participating teams.",
     "icon": "trophy"
   },
   {
     "id": "houston-fll",
     "year": "2022",
     "title": "Qualificati alla Finale Mondiale",
+    "title_en": "World Championship Qualifiers",
     "location": "Houston, USA",
+    "location_en": "Houston, USA",
     "description": "Qualifica alla Finale Mondiale della First Lego League a Houston (USA).",
+    "description_en": "Qualified for the First Lego League World Festival in Houston (USA).",
     "icon": "trophy"
   },
   {
     "id": "detroit-fll",
     "year": "2019",
     "title": "Qualificati alla Finale Mondiale",
+    "title_en": "World Championship Qualifiers",
     "location": "Detroit, USA",
+    "location_en": "Detroit, USA",
     "description": "Qualifica alla Finale Mondiale della First Lego League a Detroit (USA).",
+    "description_en": "Qualified for the First Lego League World Festival in Detroit (USA).",
     "icon": "trophy"
   }
 ]

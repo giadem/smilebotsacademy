@@ -157,6 +157,51 @@ button {
   background: #008cc2;
 }
 
+/* Language Switcher */
+.lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 3px 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow-sm);
+}
+
+.lang-btn {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+  line-height: 1.2;
+}
+
+.lang-btn:hover {
+  color: var(--primary-blue);
+}
+
+.lang-btn.active {
+  color: #ffffff;
+  background: var(--primary-blue);
+}
+
+.lang-divider {
+  color: var(--border-color);
+  font-size: 0.75rem;
+  user-select: none;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
 /* Mobile Nav Toggle */
 .mobile-toggle {
   display: none;

@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initModal();
 });
 
+// Detect current page language from <html lang="...">
+function getCurrentLang() {
+  const htmlLang = document.documentElement.getAttribute('lang') || 'it';
+  return htmlLang.toLowerCase().startsWith('en') ? 'en' : 'it';
+}
+
 // Dynamic copyright year
 function initCopyrightYear() {
   const yearEl = document.getElementById('copyright-year');
@@ -68,22 +74,30 @@ async function loadAchievements() {
   const container = document.getElementById('achievements-track');
   if (!container) return;
 
+  const isEn = getCurrentLang() === 'en';
   const results = await fetchJSON('content/results.json');
   if (!results || !Array.isArray(results)) {
-    container.innerHTML = `<p style="color:var(--text-muted); padding: 1rem;">Impossibile caricare i risultati.</p>`;
+    const errorMsg = isEn ? 'Unable to load achievements.' : 'Impossibile caricare i risultati.';
+    container.innerHTML = `<p style="color:var(--text-muted); padding: 1rem;">${errorMsg}</p>`;
     return;
   }
 
-  container.innerHTML = results.map(item => `
-    <article class="achievement-card">
-      <div>
-        <div class="achievement-icon">${getTrophyIconSvg()}</div>
-        <div class="achievement-year"><span class="achievement-year-only">${item.year}</span> — ${item.location}</div>
-        <h3 class="achievement-title">${item.title}</h3>
-      </div>
-      <p class="achievement-desc">${item.description}</p>
-    </article>
-  `).join('');
+  container.innerHTML = results.map(item => {
+    const title = (isEn && item.title_en) ? item.title_en : item.title;
+    const location = (isEn && item.location_en) ? item.location_en : item.location;
+    const description = (isEn && item.description_en) ? item.description_en : item.description;
+
+    return `
+      <article class="achievement-card">
+        <div>
+          <div class="achievement-icon">${getTrophyIconSvg()}</div>
+          <div class="achievement-year"><span class="achievement-year-only">${item.year}</span> — ${location}</div>
+          <h3 class="achievement-title">${title}</h3>
+        </div>
+        <p class="achievement-desc">${description}</p>
+      </article>
+    `;
+  }).join('');
 
   initAchievementsControls();
 }
@@ -124,10 +138,18 @@ function initAchievementsControls() {
 }
 
 // Date formatter
-function formatDate(dateString) {
+function formatDate(dateString, isEn = false) {
   if (!dateString) return '';
   const date = new Date(dateString + (dateString.includes('T') ? '' : 'T00:00:00'));
   if (isNaN(date.getTime())) return dateString;
+
+  if (isEn) {
+    return new Intl.DateTimeFormat('en-US', {
+      month: 'long',
+      day: 'numeric',
+      year: 'numeric'
+    }).format(date);
+  }
 
   const formatted = new Intl.DateTimeFormat('it-IT', {
     day: 'numeric',
@@ -151,16 +173,29 @@ async function loadNews(limit = 0) {
   const container = document.getElementById('news-grid');
   if (!container) return;
 
+  const isEn = getCurrentLang() === 'en';
   const newsData = await fetchJSON('content/news.json');
   if (!newsData || !Array.isArray(newsData)) {
-    container.innerHTML = `<p style="color:var(--text-muted); padding: 1rem;">Nessuna notizia disponibile al momento.</p>`;
+    const emptyMsg = isEn ? 'No news available at the moment.' : 'Nessuna notizia disponibile al momento.';
+    container.innerHTML = `<p style="color:var(--text-muted); padding: 1rem;">${emptyMsg}</p>`;
     return;
   }
 
-  allNewsData = newsData.map(item => ({
-    ...item,
-    formattedDate: item.formattedDate || formatDate(item.date)
-  }));
+  allNewsData = newsData.map(item => {
+    const title = (isEn && item.title_en) ? item.title_en : item.title;
+    const category = (isEn && item.category_en) ? item.category_en : item.category;
+    const summary = (isEn && item.summary_en) ? item.summary_en : item.summary;
+    const content = (isEn && item.content_en) ? item.content_en : item.content;
+
+    return {
+      ...item,
+      displayTitle: title,
+      displayCategory: category,
+      displaySummary: summary,
+      displayContent: content,
+      formattedDate: formatDate(item.date, isEn)
+    };
+  });
 
   const itemsToRender = limit > 0 ? allNewsData.slice(0, limit) : allNewsData;
 
@@ -172,9 +207,9 @@ async function loadNews(limit = 0) {
     searchInput.addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase().trim();
       const filtered = allNewsData.filter(item => 
-        item.title.toLowerCase().includes(query) || 
-        item.summary.toLowerCase().includes(query) ||
-        item.category.toLowerCase().includes(query)
+        item.displayTitle.toLowerCase().includes(query) || 
+        item.displaySummary.toLowerCase().includes(query) ||
+        item.displayCategory.toLowerCase().includes(query)
       );
       renderNewsCards(filtered, container);
     });
@@ -182,23 +217,27 @@ async function loadNews(limit = 0) {
 }
 
 function renderNewsCards(items, container) {
+  const isEn = getCurrentLang() === 'en';
   if (items.length === 0) {
-    container.innerHTML = `<p style="color:var(--text-muted); padding: 2rem; text-align:center; grid-column: 1/-1;">Nessuna notizia trovata.</p>`;
+    const noNewsFound = isEn ? 'No news found.' : 'Nessuna notizia trovata.';
+    container.innerHTML = `<p style="color:var(--text-muted); padding: 2rem; text-align:center; grid-column: 1/-1;">${noNewsFound}</p>`;
     return;
   }
+
+  const readMoreText = isEn ? 'Read more' : 'Leggi tutto';
 
   container.innerHTML = items.map(item => `
     <article class="news-card" data-news-id="${item.id}">
       <div class="news-card-img-wrap">
-        <img src="${item.image}" alt="${item.title}" class="news-card-img" loading="lazy" />
-        <span class="news-card-category">${item.category}</span>
+        <img src="${item.image}" alt="${item.displayTitle}" class="news-card-img" loading="lazy" />
+        <span class="news-card-category">${item.displayCategory}</span>
       </div>
       <div class="news-card-body">
         <div class="news-card-date">${item.formattedDate || item.date}</div>
-        <h3 class="news-card-title">${item.title}</h3>
-        <p class="news-card-excerpt">${item.summary}</p>
+        <h3 class="news-card-title">${item.displayTitle}</h3>
+        <p class="news-card-excerpt">${item.displaySummary}</p>
         <span class="news-card-readmore">
-          Leggi tutto
+          ${readMoreText}
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </span>
       </div>
@@ -254,10 +293,10 @@ function openNewsModal(newsItem) {
   const modalText = dialog.querySelector('#modal-text');
 
   if (modalImg) modalImg.src = newsItem.image;
-  if (modalCategory) modalCategory.textContent = newsItem.category;
-  if (modalDate) modalDate.textContent = newsItem.formattedDate || formatDate(newsItem.date);
-  if (modalTitle) modalTitle.textContent = newsItem.title;
-  if (modalText) modalText.innerHTML = newsItem.content;
+  if (modalCategory) modalCategory.textContent = newsItem.displayCategory || newsItem.category;
+  if (modalDate) modalDate.textContent = newsItem.formattedDate || formatDate(newsItem.date, getCurrentLang() === 'en');
+  if (modalTitle) modalTitle.textContent = newsItem.displayTitle || newsItem.title;
+  if (modalText) modalText.innerHTML = newsItem.displayContent || newsItem.content;
 
   document.body.classList.add('modal-open');
   dialog.showModal();
@@ -268,9 +307,11 @@ async function loadSponsors() {
   const container = document.getElementById('sponsors-grid');
   if (!container) return;
 
+  const isEn = getCurrentLang() === 'en';
   const sponsors = await fetchJSON('content/sponsors.json');
   if (!sponsors || !Array.isArray(sponsors)) {
-    container.innerHTML = `<p style="color:var(--text-muted); padding: 1rem;">Impossibile caricare i partner.</p>`;
+    const errorMsg = isEn ? 'Unable to load sponsors.' : 'Impossibile caricare i partner.';
+    container.innerHTML = `<p style="color:var(--text-muted); padding: 1rem;">${errorMsg}</p>`;
     return;
   }
 
