@@ -398,7 +398,13 @@ async function loadPhotogallery() {
   renderGallery(images, container, isEn);
 }
 
+// Lightbox State
+let galleryImagesList = [];
+let currentLightboxIndex = -1;
+
 function renderGallery(images, container, isEn) {
+  galleryImagesList = images;
+
   if (images.length === 0) {
     const emptyMsg = isEn ? 'No pictures available in the gallery yet.' : 'Nessuna foto disponibile nella galleria al momento.';
     container.innerHTML = `<p style="color:var(--text-muted); padding: 2rem; text-align:center; grid-column: 1/-1;">${emptyMsg}</p>`;
@@ -406,15 +412,15 @@ function renderGallery(images, container, isEn) {
   }
 
   container.innerHTML = images.map((src, index) => `
-    <div class="gallery-item" data-src="${src}" tabindex="0" role="button" aria-label="Photo ${index + 1}">
+    <div class="gallery-item" data-index="${index}" tabindex="0" role="button" aria-label="Photo ${index + 1}">
       <img src="${src}" alt="Smilebots Academy Photo ${index + 1}" class="gallery-img" loading="lazy" />
     </div>
   `).join('');
 
   container.querySelectorAll('.gallery-item').forEach(item => {
     const openHandler = () => {
-      const src = item.getAttribute('data-src');
-      if (src) openLightbox(src);
+      const idx = parseInt(item.getAttribute('data-index'), 10);
+      if (!isNaN(idx)) openLightboxByIndex(idx);
     };
     item.addEventListener('click', openHandler);
     item.addEventListener('keydown', (e) => {
@@ -432,7 +438,18 @@ function initLightbox() {
   if (!dialog) return;
 
   const closeBtn = dialog.querySelector('.lightbox-close-btn');
+  const prevBtn = dialog.querySelector('#lightbox-prev');
+  const nextBtn = dialog.querySelector('#lightbox-next');
+
   closeBtn?.addEventListener('click', () => dialog.close());
+  prevBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navigateLightbox(-1);
+  });
+  nextBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    navigateLightbox(1);
+  });
 
   dialog.addEventListener('click', (e) => {
     if (e.target === dialog) {
@@ -442,18 +459,61 @@ function initLightbox() {
 
   dialog.addEventListener('close', () => {
     document.body.classList.remove('modal-open');
+    currentLightboxIndex = -1;
+  });
+
+  // Keyboard navigation with ArrowLeft / ArrowRight
+  window.addEventListener('keydown', (e) => {
+    if (!dialog.open) return;
+
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      navigateLightbox(-1);
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      navigateLightbox(1);
+    }
   });
 }
 
-function openLightbox(src) {
+function openLightboxByIndex(index) {
   const dialog = document.getElementById('lightbox-modal');
-  if (!dialog) return;
+  if (!dialog || galleryImagesList.length === 0) return;
+
+  currentLightboxIndex = (index + galleryImagesList.length) % galleryImagesList.length;
+  updateLightboxContent();
+
+  if (!dialog.open) {
+    document.body.classList.add('modal-open');
+    dialog.showModal();
+  }
+}
+
+function navigateLightbox(direction) {
+  if (galleryImagesList.length <= 1) return;
+  openLightboxByIndex(currentLightboxIndex + direction);
+}
+
+function updateLightboxContent() {
+  const dialog = document.getElementById('lightbox-modal');
+  if (!dialog || currentLightboxIndex < 0 || currentLightboxIndex >= galleryImagesList.length) return;
 
   const img = dialog.querySelector('#lightbox-img');
+  const counter = dialog.querySelector('#lightbox-counter');
+  const prevBtn = dialog.querySelector('#lightbox-prev');
+  const nextBtn = dialog.querySelector('#lightbox-next');
+
+  const src = galleryImagesList[currentLightboxIndex];
   if (img) {
     img.src = src;
+    img.alt = `Smilebots Academy Photo ${currentLightboxIndex + 1}`;
   }
 
-  document.body.classList.add('modal-open');
-  dialog.showModal();
+  if (counter) {
+    counter.textContent = `${currentLightboxIndex + 1} / ${galleryImagesList.length}`;
+  }
+
+  const showNav = galleryImagesList.length > 1;
+  if (prevBtn) prevBtn.style.display = showNav ? 'flex' : 'none';
+  if (nextBtn) nextBtn.style.display = showNav ? 'flex' : 'none';
 }
