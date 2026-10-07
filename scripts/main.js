@@ -332,7 +332,45 @@ async function loadPhotogallery() {
   if (!container) return;
 
   const isEn = getCurrentLang() === 'en';
-  let images = [];
+  galleryImagesList = [];
+  container.innerHTML = ''; // Clear initial "Loading..." message
+
+  const appendPhotoItem = (src) => {
+    const index = galleryImagesList.length;
+    galleryImagesList.push(src);
+
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.setAttribute('data-index', index);
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'button');
+    item.setAttribute('aria-label', `Photo ${index + 1}`);
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = `Smilebots Academy Photo ${index + 1}`;
+    img.className = 'gallery-img';
+    img.loading = 'lazy';
+
+    item.appendChild(img);
+
+    const openHandler = () => {
+      const idx = parseInt(item.getAttribute('data-index'), 10);
+      if (!isNaN(idx)) openLightboxByIndex(idx);
+    };
+
+    item.addEventListener('click', openHandler);
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openHandler();
+      }
+    });
+
+    container.appendChild(item);
+  };
+
+  let listImages = [];
 
   // Strategy 1: Attempt to fetch directory listing if server supports it (Apache/Nginx/etc.)
   try {
@@ -343,7 +381,7 @@ async function loadPhotogallery() {
         const text = await response.text();
         const doc = new DOMParser().parseFromString(text, 'text/html');
         const links = Array.from(doc.querySelectorAll('a'));
-        images = links
+        listImages = links
           .map(a => a.getAttribute('href'))
           .filter(href => href && /^\d+\.jpg$/i.test(href.replace(/^.*[\\/]/, '')))
           .map(href => {
@@ -362,76 +400,50 @@ async function loadPhotogallery() {
   }
 
   // Strategy 2: If directory listing not available, check content/photogallery.json if populated
-  if (images.length === 0) {
+  if (listImages.length === 0) {
     const manifest = await fetchJSON('content/photogallery.json');
     if (manifest && Array.isArray(manifest) && manifest.length > 0) {
-      images = manifest.map(img => img.startsWith('/') ? img : '/src/photogallery/' + img);
+      listImages = manifest.map(img => img.startsWith('/') ? img : '/src/photogallery/' + img);
     }
   }
 
-  // Strategy 3: Sequentially probe 1.jpg, 2.jpg, 3.jpg ... stopping at the first missing index
-  if (images.length === 0) {
-    let index = 1;
-    let keepChecking = true;
+  // If we already have the full list from directory or manifest, render them immediately
+  if (listImages.length > 0) {
+    listImages.forEach(src => appendPhotoItem(src));
+    return;
+  }
 
-    while (keepChecking) {
-      const src = `/src/photogallery/${index}.jpg`;
-      const exists = await new Promise(resolve => {
-        const img = new Image();
-        img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
-        img.src = src;
-      });
+  // Strategy 3: Sequentially probe 1.jpg, 2.jpg... and append each one immediately to DOM as it arrives
+  let index = 1;
+  let keepChecking = true;
 
-      if (exists) {
-        images.push(src);
-        index++;
-      } else {
-        // Stopped at the first non-existent image (e.g. 21.jpg)
-        keepChecking = false;
-      }
+  while (keepChecking) {
+    const src = `/src/photogallery/${index}.jpg`;
+    const exists = await new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => resolve(true);
+      img.onerror = () => resolve(false);
+      img.src = src;
+    });
+
+    if (exists) {
+      appendPhotoItem(src);
+      index++;
+    } else {
+      // Stopped at the first non-existent image (e.g. 21.jpg)
+      keepChecking = false;
     }
   }
 
-  // De-duplicate images
-  images = [...new Set(images)];
-
-  renderGallery(images, container, isEn);
+  if (galleryImagesList.length === 0) {
+    const emptyMsg = isEn ? 'No pictures available in the gallery yet.' : 'Nessuna foto disponibile nella galleria al momento.';
+    container.innerHTML = `<p style="color:var(--text-muted); padding: 2rem; text-align:center; grid-column: 1/-1;">${emptyMsg}</p>`;
+  }
 }
 
 // Lightbox State
 let galleryImagesList = [];
 let currentLightboxIndex = -1;
-
-function renderGallery(images, container, isEn) {
-  galleryImagesList = images;
-
-  if (images.length === 0) {
-    const emptyMsg = isEn ? 'No pictures available in the gallery yet.' : 'Nessuna foto disponibile nella galleria al momento.';
-    container.innerHTML = `<p style="color:var(--text-muted); padding: 2rem; text-align:center; grid-column: 1/-1;">${emptyMsg}</p>`;
-    return;
-  }
-
-  container.innerHTML = images.map((src, index) => `
-    <div class="gallery-item" data-index="${index}" tabindex="0" role="button" aria-label="Photo ${index + 1}">
-      <img src="${src}" alt="Smilebots Academy Photo ${index + 1}" class="gallery-img" loading="lazy" />
-    </div>
-  `).join('');
-
-  container.querySelectorAll('.gallery-item').forEach(item => {
-    const openHandler = () => {
-      const idx = parseInt(item.getAttribute('data-index'), 10);
-      if (!isNaN(idx)) openLightboxByIndex(idx);
-    };
-    item.addEventListener('click', openHandler);
-    item.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openHandler();
-      }
-    });
-  });
-}
 
 // Lightbox Modal Handler
 function initLightbox() {

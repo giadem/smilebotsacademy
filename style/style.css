@@ -948,6 +948,18 @@ button {
   box-shadow: var(--shadow-sm);
   cursor: pointer;
   transition: all var(--transition-fast);
+  animation: fadeInGalleryItem 0.35s ease forwards;
+}
+
+@keyframes fadeInGalleryItem {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .gallery-item:hover {
