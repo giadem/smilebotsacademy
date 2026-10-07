@@ -343,21 +343,25 @@ async function loadPhotogallery() {
         const text = await response.text();
         const doc = new DOMParser().parseFromString(text, 'text/html');
         const links = Array.from(doc.querySelectorAll('a'));
-        const imageExtensions = /\.(jpe?g|png|gif|webp|avif|svg)$/i;
         images = links
           .map(a => a.getAttribute('href'))
-          .filter(href => href && imageExtensions.test(href))
+          .filter(href => href && /^\d+\.jpg$/i.test(href.replace(/^.*[\\/]/, '')))
           .map(href => {
             if (href.startsWith('http') || href.startsWith('/')) return href;
             return '/src/photogallery/' + href.replace(/^\.?\//, '');
+          })
+          .sort((a, b) => {
+            const numA = parseInt(a.replace(/^.*[\\/]/, '').split('.')[0], 10);
+            const numB = parseInt(b.replace(/^.*[\\/]/, '').split('.')[0], 10);
+            return numA - numB;
           });
       }
     }
   } catch (e) {
-    console.debug('Direct directory listing unavailable, falling back to gallery index:', e);
+    console.debug('Direct directory listing unavailable, checking sequential files:', e);
   }
 
-  // Strategy 2: If directory listing yielded no images, try content/photogallery.json manifest
+  // Strategy 2: If directory listing not available, check content/photogallery.json if populated
   if (images.length === 0) {
     const manifest = await fetchJSON('content/photogallery.json');
     if (manifest && Array.isArray(manifest) && manifest.length > 0) {
@@ -365,31 +369,28 @@ async function loadPhotogallery() {
     }
   }
 
-  // Strategy 3: Dynamic probe for common sequentially-named image formats if empty
+  // Strategy 3: Sequentially probe 1.jpg, 2.jpg, 3.jpg ... stopping at the first missing index
   if (images.length === 0) {
-    const probeNames = [
-      ...Array.from({ length: 40 }, (_, i) => `photo_${i + 1}`),
-      ...Array.from({ length: 40 }, (_, i) => `img_${i + 1}`),
-      ...Array.from({ length: 40 }, (_, i) => `image_${i + 1}`),
-      ...Array.from({ length: 40 }, (_, i) => `${i + 1}`)
-    ];
-    const extensions = ['jpg', 'jpeg', 'png', 'webp'];
-    const candidates = [];
-    for (const name of probeNames) {
-      for (const ext of extensions) {
-        candidates.push(`/src/photogallery/${name}.${ext}`);
+    let index = 1;
+    let keepChecking = true;
+
+    while (keepChecking) {
+      const src = `/src/photogallery/${index}.jpg`;
+      const exists = await new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => resolve(false);
+        img.src = src;
+      });
+
+      if (exists) {
+        images.push(src);
+        index++;
+      } else {
+        // Stopped at the first non-existent image (e.g. 21.jpg)
+        keepChecking = false;
       }
     }
-
-    const checkImage = (src) => new Promise(resolve => {
-      const img = new Image();
-      img.onload = () => resolve(src);
-      img.onerror = () => resolve(null);
-      img.src = src;
-    });
-
-    const results = await Promise.all(candidates.map(checkImage));
-    images = results.filter(Boolean);
   }
 
   // De-duplicate images
