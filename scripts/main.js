@@ -40,8 +40,10 @@ function getTrophyIconSvg() {
   return `<svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9C6 13.97 10.03 18 15 18M18 9C18 13.97 13.97 18 9 18M12 18V21M8 21H16M4 4H20V9C20 13.42 16.42 17 12 17C7.58 17 4 13.42 4 9V4Z"/><circle cx="12" cy="9" r="2"/></svg>`;
 }
 
-// Navbar logic
+// Navbar logic (fallback if standard header is used without site-header)
 function initNavbar() {
+  if (document.querySelector('site-header')) return;
+
   const header = document.querySelector('.header');
   const toggle = document.querySelector('.mobile-toggle');
   const menu = document.querySelector('.nav-menu');
