@@ -12,5 +12,12 @@
     "tier": "Partner",
     "logo": "src/sponsors/tarchini_group.png",
     "website": "https://www.tarchinigroup.com/it/homepage"
+  },
+  {
+    "id": "voxxed",
+    "name": "Voxxed Days Ticino",
+    "tier": "Partner",
+    "logo": "src/sponsors/voxxed_days_ticino.svg",
+    "website": "https://ticino.voxxeddays.ch"
   }
 ]
