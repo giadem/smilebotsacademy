@@ -1,5 +1,18 @@
 [
   {
+    "id": "news-0",
+    "title": "Esperienza a Hong Kong per la squadra 13176A",
+    "title_en": "Hong Kong experience for team 13176A",
+    "date": "2026-10-22",
+    "category": "Competizioni",
+    "category_en": "Competitions",
+    "image": "/src/news/hongkong26.jpg",
+    "summary": "La squadra 13176A ha partecipato al VEX V5 Signature Event di Hong Kong, un'esperienza internazionale formativa per i ragazzi.",
+    "summary_en": "Team 13176A took part in the VEX V5 Signature Event in Hong Kong, a valuable international learning experience for the team.",
+    "content": "Dal 20 al 21 ottobre 2026 la squadra 13176A degli Smilebots ha preso parte all'Hong Kong VEX V5 Robotics Competition (HS) Signature Event, uno degli appuntamenti più prestigiosi del calendario VEX.\n\nPer i nostri ragazzi è stata un'occasione unica per confrontarsi con altri team, osservare da vicino soluzioni tecniche e strategie differenti e mettere alla prova il lavoro svolto durante i mesi di preparazione. Due giornate intense, fatte di partite, aggiustamenti in corsa, dialogo e gestione della pressione di una competizione internazionale.\n\nTorniamo dall'Asia con un bagaglio prezioso di esperienza, nuove idee e tanta motivazione. Le lezioni imparate a Hong Kong saranno il punto di partenza per migliorare il robot e affrontare con ancora più determinazione i prossimi appuntamenti della stagione.",
+    "content_en": "From 20 to 21 October 2026, Smilebots team 13176A took part in the Hong Kong VEX V5 Robotics Competition (HS) Signature Event, one of the most prestigious events on the VEX calendar.\n\nFor our students, it was a unique opportunity to compete against other teams, see a variety of technical solutions and strategies up close, and put to the test the work done during months of preparation. Two intense days of matches, on-the-fly adjustments, exchanges and handling the pressure of an international competition.\n\nWe return from Asia with a valuable wealth of experience, new ideas and plenty of motivation. The lessons learned in Hong Kong will be the starting point for improving the robot and facing the upcoming events of the season with even greater determination."
+  },
+  {
     "id": "news-1",
     "title": "Gli Smilebots ospiti della trasmissione RSI \"Prima Ora\"",
     "title_en": "The Smilebots guests on RSI's show \"Prima Ora\"",
