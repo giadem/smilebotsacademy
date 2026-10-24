@@ -8,9 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const isGalleryPage = document.querySelector('[data-page="gallery"]') !== null;
 
   if (isHomePage) {
-    loadAchievements();
-    loadNews(3); // Max 3 news on homepage
-    loadSponsors();
+    Promise.all([
+      loadAchievements(),
+      loadNews(3), // Max 3 news on homepage
+      loadSponsors()
+    ]).then(scrollToHash);
   } else if (isNewsPage) {
     loadNews(0); // Load all items on news page
   } else if (isGalleryPage) {
@@ -25,6 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function getCurrentLang() {
   const htmlLang = document.documentElement.getAttribute('lang') || 'it';
   return htmlLang.toLowerCase().startsWith('en') ? 'en' : 'it';
+}
+
+// Re-scroll to the URL anchor (e.g. /#sponsors) once dynamic content has changed the page height
+function scrollToHash() {
+  if (!location.hash) return;
+  const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  target?.scrollIntoView();
 }
 
 // Dynamic copyright year
