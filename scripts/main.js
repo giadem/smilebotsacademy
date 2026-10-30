@@ -383,38 +383,38 @@ async function loadPhotogallery() {
 
   let listImages = [];
 
-  // Strategy 1: Attempt to fetch directory listing if server supports it (Apache/Nginx/etc.)
-  try {
-    const response = await fetch('/src/photogallery/', { cache: 'no-cache' });
-    if (response.ok) {
-      const contentType = response.headers.get('content-type') || '';
-      if (contentType.includes('text/html')) {
-        const text = await response.text();
-        const doc = new DOMParser().parseFromString(text, 'text/html');
-        const links = Array.from(doc.querySelectorAll('a'));
-        listImages = links
-          .map(a => a.getAttribute('href'))
-          .filter(href => href && /^\d+\.jpg$/i.test(href.replace(/^.*[\\/]/, '')))
-          .map(href => {
-            if (href.startsWith('http') || href.startsWith('/')) return href;
-            return '/src/photogallery/' + href.replace(/^\.?\//, '');
-          })
-          .sort((a, b) => {
-            const numA = parseInt(a.replace(/^.*[\\/]/, '').split('.')[0], 10);
-            const numB = parseInt(b.replace(/^.*[\\/]/, '').split('.')[0], 10);
-            return numA - numB;
-          });
-      }
-    }
-  } catch (e) {
-    console.debug('Direct directory listing unavailable, checking sequential files:', e);
+  // Strategy 1: Use content/photogallery.json if populated, it sets the display order
+  const manifest = await fetchJSON('content/photogallery.json');
+  if (manifest && Array.isArray(manifest) && manifest.length > 0) {
+    listImages = manifest.map(img => img.startsWith('/') ? img : '/src/photogallery/' + img);
   }
 
-  // Strategy 2: If directory listing not available, check content/photogallery.json if populated
+  // Strategy 2: If manifest not available, attempt to fetch directory listing if server supports it (Apache/Nginx/etc.)
   if (listImages.length === 0) {
-    const manifest = await fetchJSON('content/photogallery.json');
-    if (manifest && Array.isArray(manifest) && manifest.length > 0) {
-      listImages = manifest.map(img => img.startsWith('/') ? img : '/src/photogallery/' + img);
+    try {
+      const response = await fetch('/src/photogallery/', { cache: 'no-cache' });
+      if (response.ok) {
+        const contentType = response.headers.get('content-type') || '';
+        if (contentType.includes('text/html')) {
+          const text = await response.text();
+          const doc = new DOMParser().parseFromString(text, 'text/html');
+          const links = Array.from(doc.querySelectorAll('a'));
+          listImages = links
+            .map(a => a.getAttribute('href'))
+            .filter(href => href && /^\d+\.jpg$/i.test(href.replace(/^.*[\\/]/, '')))
+            .map(href => {
+              if (href.startsWith('http') || href.startsWith('/')) return href;
+              return '/src/photogallery/' + href.replace(/^\.?\//, '');
+            })
+            .sort((a, b) => {
+              const numA = parseInt(a.replace(/^.*[\\/]/, '').split('.')[0], 10);
+              const numB = parseInt(b.replace(/^.*[\\/]/, '').split('.')[0], 10);
+              return numA - numB;
+            });
+        }
+      }
+    } catch (e) {
+      console.debug('Direct directory listing unavailable, checking sequential files:', e);
     }
   }
 
