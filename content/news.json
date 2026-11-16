@@ -1,5 +1,18 @@
 [
   {
+    "id": "news-5",
+    "title": "Gli Smilebots all'Aiglon Robot Rumble",
+    "title_en": "The Smilebots at the Aiglon Robot Rumble",
+    "date": "2026-11-14",
+    "category": "Competizioni",
+    "category_en": "Competitions",
+    "image": "/src/news/smilebots_aiglon26.jpg",
+    "summary": "Le squadre 13176A e 13176B hanno partecipato all'Aiglon Robot Rumble, competizione VEX V5 organizzata dall'Aiglon College: una giornata di gara ricca di spunti.",
+    "summary_en": "Teams 13176A and 13176B took part in the Aiglon Robot Rumble, a VEX V5 competition hosted by Aiglon College: a day of matches full of lessons.",
+    "content": "Sabato 14 novembre 2026 due squadre di Smilebots Academy, 13176A e 13176B, hanno preso parte all'Aiglon Robot Rumble, competizione VEX V5 organizzata da Aiglon College.\n\nÈ stata una giornata intensa di partite, in cui i ragazzi hanno potuto mettere alla prova i propri robot, confrontarsi con altri team e affinare strategia e collaborazione sul campo. Ogni match è stato un'occasione per osservare, adattarsi e imparare qualcosa di nuovo.\n\nRingraziamo l'Aiglon College per l'organizzazione e l'accoglienza. Torniamo a casa con una bella esperienza formativa e tante idee per continuare a migliorare in vista dei prossimi appuntamenti della stagione.",
+    "content_en": "On Saturday 14 November 2026, two Smilebots Academy teams, 13176A and 13176B, took part in the Aiglon Robot Rumble, a VEX V5 competition hosted by Aiglon College.\n\nIt was an intense day of matches in which our students were able to put their robots to the test, compete against other teams and sharpen their strategy and teamwork on the field. Every match was a chance to observe, adapt and learn something new.\n\nWe would like to thank Aiglon College for organising and hosting the event. We return home with a valuable learning experience and plenty of ideas to keep improving ahead of the upcoming events of the season."
+  },
+  {
     "id": "news-0",
     "title": "Esperienza a Hong Kong per la squadra 13176A",
     "title_en": "Hong Kong experience for team 13176A",
