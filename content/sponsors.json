@@ -19,5 +19,12 @@
     "tier": "Partner",
     "logo": "src/sponsors/voxxed_days_ticino.svg",
     "website": "https://ticino.voxxeddays.ch"
+  },
+  {
+    "id": "mm_tecnolamiera",
+    "name": "M&M Tecnolamiera Sagl",
+    "tier": "Partner",
+    "logo": "src/sponsors/mm_tecnolamiera.png",
+    "website": "https://www.tecnolamiera.ch/en"
   }
 ]
