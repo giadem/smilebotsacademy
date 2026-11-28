@@ -26,5 +26,12 @@
     "tier": "Partner",
     "logo": "src/sponsors/mm_tecnolamiera.png",
     "website": "https://www.tecnolamiera.ch/en"
+  },
+  {
+    "id": "pl3",
+    "name": "PL3 & Partners",
+    "tier": "Partner",
+    "logo": "src/sponsors/pl3_logo.png",
+    "website": "https://pl3group.com/en/"
   }
 ]
